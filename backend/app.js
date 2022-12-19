@@ -7,6 +7,8 @@ const csurf = require('csurf');
 const { isProduction } = require('./config/keys');
 
 require('./models/User'); //imported User model above usersRouter
+require('./models/Tweet');
+
 require('./config/passport');
 const passport = require('passport');
 

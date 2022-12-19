@@ -7,6 +7,8 @@ const csurf = require('csurf');
 const { isProduction } = require('./config/keys');
 
 require('./models/User'); //imported User model above usersRouter
+require('./config/passport');
+const passport = require('passport');
 
 const usersRouter = require('./routes/api/users');
 const tweetsRouter = require('./routes/api/tweets');
@@ -15,6 +17,8 @@ const csrfRouter = require('./routes/api/csrf');
 const app = express();
 
 const debug = require('debug')
+
+app.use(passport.initialize());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -40,9 +44,6 @@ app.use(
         }
     })
 );
-
-
-
 
 
 // Attach Express routers
